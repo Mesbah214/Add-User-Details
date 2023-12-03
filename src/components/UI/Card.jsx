@@ -1,6 +1,7 @@
-/* eslint-disable react/prop-types */
-const Card = ({ children }) => {
-  return <div className="card">{children}</div>;
+import "./Card.css";
+
+const Card = ({ children, className }) => {
+  return <div className={`card ${className}`}>{children}</div>;
 };
 
 export default Card;

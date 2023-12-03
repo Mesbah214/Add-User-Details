@@ -1,17 +1,19 @@
 import Card from "./UI/Card";
 
+import "./UserList.css";
+
 const UserList = ({ list }) => {
   return (
-    <Card>
-      <div className="users">
-        <ul>
-          {list.map((item) => (
-            <li key={item.id}>
-              {item.username} ({item.age} years old)
-            </li>
-          ))}
-        </ul>
-      </div>
+    <Card className="users">
+      <ul>
+        {list.length === 0
+          ? "No users to show!"
+          : list.map((item) => (
+              <li key={item.id}>
+                {item.username} ({item.age} years old)
+              </li>
+            ))}
+      </ul>
     </Card>
   );
 };

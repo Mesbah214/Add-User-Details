@@ -1,66 +1,52 @@
-/* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useRef } from "react";
 
 import Card from "./UI/Card";
 import Button from "./UI/Button";
 
-const initialUser = {
-  username: "",
-  age: "",
-};
+import "./Form.css";
 
 const Form = ({ onAddUser, onError }) => {
-  const [user, setUser] = useState(initialUser);
+  const usernameRef = useRef();
+  const ageRef = useRef();
 
   const submitHandler = (e) => {
     e.preventDefault();
 
-    if (user.username === "" || user.age === "") {
-      return onError("Please insert valid inputs");
-    } else if (user.age < 1) {
-      return onError("Ages can not be 0 or negative");
+    if (usernameRef.current.value === "" || ageRef.current.value === "") {
+      onError({
+        title: "Invalid Inputs",
+        message: "Please enter your name and age.",
+      });
+
+      return;
+    } else if (ageRef < 1) {
+      onError({
+        title: "Invalid Age",
+        message: "Age can not be 0 or negatives.",
+      });
+
+      return;
     }
 
-    onAddUser(user);
-
-    setUser(initialUser);
-  };
-
-  const inputChangeHandler = (input, value) => {
-    setUser((prevState) => {
-      return {
-        ...prevState,
-        [input]: value,
-      };
+    onAddUser({
+      username: usernameRef.current.value,
+      age: ageRef.current.value,
     });
-  };
 
-  console.log(user.username);
+    usernameRef.current.value = "";
+    ageRef.current.value = "";
+  };
 
   return (
-    <Card>
+    <Card className="input">
       <form onSubmit={submitHandler}>
-        <div className="input">
-          <label htmlFor="username">Username</label>
-          <input
-            onChange={(e) => inputChangeHandler("username", e.target.value)}
-            value={user.username}
-            type="text"
-            id="username"
-          />
-        </div>
+        <label htmlFor="username">Username</label>
+        <input type="text" id="username" ref={usernameRef} />
 
-        <div className="input">
-          <label htmlFor="age">Age(years)</label>
-          <input
-            onChange={(e) => inputChangeHandler("age", e.target.value)}
-            value={user.age}
-            type="number"
-            id="age"
-          />
-        </div>
+        <label htmlFor="age">Age(years)</label>
+        <input type="number" id="age" ref={ageRef} />
 
-        <Button type={"submit"} label={"Submit"} />
+        <Button type={"submit"} label={"Add User"} />
       </form>
     </Card>
   );
