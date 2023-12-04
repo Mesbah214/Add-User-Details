@@ -15,7 +15,7 @@ const Form = ({ onAddUser, onError }) => {
     if (usernameRef.current.value === "" || ageRef.current.value === "") {
       onError({
         title: "Invalid Inputs",
-        message: "Please enter your name and age.",
+        message: "Please enter valid informations.",
       });
 
       return;
