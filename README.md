@@ -1,8 +1,5 @@
-# React + Vite
+# Add User Details
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Currently, this app lets its users add a username and age of different users after validating the inputs. Then it displays the list of all added users.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**It's a dummy project, put together to practice basic features(useState, useRef, fragments, portals etc) of React.**
